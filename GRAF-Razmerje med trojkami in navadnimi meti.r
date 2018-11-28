@@ -16,5 +16,5 @@ labels=paste(labels,"%",sep="")
 
 #install.packages("plotrix")
 library(plotrix)
-pie3D(tocke, labels=labels,main="Razmerje med trojkami in dvojkami",explode=0.1)
+pie3D(tocke, labels=labels,main="Razmerje med vrženimi trojkami in dvojkami",explode=0.1)
 
