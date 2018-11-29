@@ -1,4 +1,4 @@
-podatki = read.table("s14-16.txt",sep = ",", header = TRUE)
+podatki = read.table("regular.txt",sep = ",", header = TRUE)
 ekipe = levels(podatki[1,]$HOME)
 ppts = c()
 p2pm = c()
@@ -53,9 +53,9 @@ temp.data = data.frame(ekipe,ppts,p2pm,p3pm,pftm,porb,pdrb,past,pstl,ptov,pblk,p
 
 
 
-ucna = data.frame(matrix(ncol = 25,nrow = 1),stringsAsFactors = FALSE)
-names(ucna) = c("HOME","HPTS","H2PM","H3PM","HFTM","HORB","HDRB","HAST","HSTL","HTOV","HBLK","HPF","AWAY","APTS","A2PM","A3PM","AFTM","AORB","ADRB","AAST","ASTL","ATOV","ABLK","APF","W")
-for(i in 1:nrow(podatki){
+pod = data.frame(matrix(ncol = 25,nrow = 1),stringsAsFactors = FALSE)
+names(pod) = c("HOME","HPTS","H2PM","H3PM","HFTM","HORB","HDRB","HAST","HSTL","HTOV","HBLK","HPF","AWAY","APTS","A2PM","A3PM","AFTM","AORB","ADRB","AAST","ASTL","ATOV","ABLK","APF","W")
+for(i in 1:nrow(podatki)){
     if(podatki[i,]$HPTS > podatki[i,]$APTS){
         WIN = "H"
     }
@@ -63,7 +63,7 @@ for(i in 1:nrow(podatki){
         WIN = "A"
     }
     
-    ucna = rbind(ucna,list(
+    pod = rbind(pod,list(
         podatki[i,]$HOME,
         temp.data[temp.data$ekipe == podatki[i,]$HOME,]$ppts/temp.data[temp.data$ekipe == podatki[i,]$HOME,]$num,
         temp.data[temp.data$ekipe == podatki[i,]$HOME,]$p2pm/temp.data[temp.data$ekipe == podatki[i,]$HOME,]$num,
@@ -132,8 +132,21 @@ for(i in 1:nrow(podatki){
     
     
 }
-ucna = ucna[-1,]
+pod = pod[-1,]
 
 
 
+learn <- pod[1:2900,]
+test <- pod[2900:3690,]
 
+learn$HOME <- NULL
+learn$AWAY <- NULL
+
+test$HOME <- NULL
+test$AWAY <- NULL
+
+learn$W <- as.factor(learn$W)
+test$W <- as.factor(test$W)
+
+pod$HOME <- NULL
+pod$AWAY <- NULL
