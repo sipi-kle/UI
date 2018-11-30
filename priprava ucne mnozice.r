@@ -69,13 +69,14 @@ for(ekipa in ekipe){
 temp.data = data.frame(ekipe,ppts,p2pm,p3pm,pftm,porb,pdrb,past,pstl,ptov,pblk,ppf,num,first,one,two,tri,four,five,all)
 
 
-pod = data.frame(matrix(ncol = 29,nrow = 1),stringsAsFactors = FALSE)
-names(pod) = c("HOME","HPTS","H2PM","H3PM","HFTM","HORB","HDRB","HAST","HSTL","HTOV","HBLK","HPF","HL5","HALL","AWAY","APTS","A2PM","A3PM","AFTM","AORB","ADRB","AAST","ASTL","ATOV","ABLK","APF","AL5","AALL","W")
+pod = data.frame(matrix(ncol = 30,nrow = 1),stringsAsFactors = FALSE)
+names(pod) = c("HOME","HPTS","H2PM","H3PM","HFTM","HORB","HDRB","HAST","HSTL","HTOV","HBLK","HPF","HL5","HALL","AWAY","APTS","A2PM","A3PM","AFTM","AORB","ADRB","AAST","ASTL","ATOV","ABLK","APF","AL5","AALL","W","DIFF")
 for(i in 1:nrow(podatki)){
     doma = temp.data$ekipe == podatki[i,]$HOME
     gost = temp.data$ekipe == podatki[i,]$AWAY
     numdoma = temp.data[doma,]$num
     numgost = temp.data[gost,]$num
+    DIFF = podatki[i,]$HPTS - podatki[i,]$APTS
 
     if(podatki[i,]$HPTS > podatki[i,]$APTS){
         WIN = "H"
@@ -130,7 +131,8 @@ for(i in 1:nrow(podatki)){
         temp.data[gost,]$ppf/numgost,
         sum(temp.data[gost,]$five,temp.data[gost,]$four,temp.data[gost,]$tri,temp.data[gost,]$two,temp.data[gost,]$one),
         temp.data[gost,]$all,
-        WIN))
+        WIN,
+        DIFF))
     
     if(temp.data[doma,]$first == TRUE){
         temp.data[doma,]$first = FALSE
