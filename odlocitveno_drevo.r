@@ -1,4 +1,4 @@
- install.packages(c("ipred", "prodlim", "CORElearn", "e1071", "randomForest", "kernlab", "nnet"))
+ install.packages(c("ipred", "prodlim", "CORElearn", "e1071", "randomForest", "kernlab", "nnet","knn"))
 ###############################################################################################
 #vecinski klasifikator
 majority.class <- names(which.max(table(learn$W)))

@@ -205,10 +205,10 @@ for(n in nt){
 
 
 best <-c(100,0)
-nt <- seq(1,5,1)
+nt <- seq(1,10,1)
 for(n in nt){
     vals <-c()
-for(i in seq(1,50)){    
+for(i in seq(1,5)){    
     nn.model <- nnet(DIFF ~ ., learn, size = n, decay = 0.0001, maxit = 10000, linout = T)
     predicted <- predict(nn.model, test)
 
