@@ -1,4 +1,6 @@
-#Naj ekipa glede na razmerje zmage/porazi
+############################################################################################
+#Naj ekipa razmerje zmag porazi                                                            #
+############################################################################################
 games <- read.table("regular.txt", sep=",", header=TRUE)
 ekipe <- levels(games[1,]$HOME)
 razmerje <- c()
