@@ -197,8 +197,13 @@ learn$AWAY <- NULL
 test$HOME <- NULL
 test$AWAY <- NULL
 
+finalTest$HOME <- NULL
+finalTest$AWAY <- NULL
+
 learn$W <- as.factor(learn$W)
 test$W <- as.factor(test$W)
+finalTest$W <- as.factor(finalTest$W)
 
 pod$HOME <- NULL
 pod$AWAY <- NULL
+
