@@ -74,79 +74,77 @@ names(pod) = c("HOME","HPTS","H2PM","H3PM","HFTM","HORB","HDRB","HAST","HSTL","H
 for(i in 1:nrow(podatki)){
     doma = temp.data$ekipe == podatki[i,]$HOME
     gost = temp.data$ekipe == podatki[i,]$AWAY
-
-    temp.data[doma,]$five =  temp.data[doma,]$four
-    temp.data[doma,]$four =  temp.data[doma,]$tri
-    temp.data[doma,]$tri =  temp.data[doma,]$two
-    temp.data[doma,]$htwo =  temp.data[doma,]$hone
-    temp.data[gost,]$five =  temp.data[gost,]$four
-    temp.data[gost,]$four =  temp.data[gost,]$tri
-    temp.data[gost,]$tri =  temp.data[gost,]$two
-    temp.data[gost,]$two =  temp.data[gost,]$one
-
-
-
+    numdoma = temp.data[doma,]$num
+    numgost = temp.data[gost,]$num
 
     if(podatki[i,]$HPTS > podatki[i,]$APTS){
         WIN = "H"
-        temp.data[doma,]$all = temp.data[doma,]$all +1
-        temp.data[gost,]$all = temp.data[gost,]$all -1
-        temp.data[doma,]$one =  1
-        temp.data[gost,]$one =  0
+        if(numdoma != 1){
+            temp.data[doma,]$all = temp.data[doma,]$all +1
+            temp.data[doma,]$one =  1
+        }
+        if(numgost != 1){
+           temp.data[gost,]$all = temp.data[gost,]$all -1        
+           temp.data[gost,]$one =  0
+        }
+
     }
     else{
         WIN = "A"
-        temp.data[doma,]$all = temp.data[doma,]$all -1
-        temp.data[gost,]$all = temp.data[gost,]$all +1
-        temp.data[doma,]$one =  0
-        temp.data[gost,]$one =  1
+        if(numdoma != 1){
+            temp.data[doma,]$all = temp.data[doma,]$all -1
+            temp.data[doma,]$one =  0
+        }
+        if(numgost != 1){
+           temp.data[gost,]$all = temp.data[gost,]$all + 1        
+           temp.data[gost,]$one =  1
+        }
     }
 
     pod = rbind(pod,list(
         podatki[i,]$HOME,
-        temp.data[doma,]$ppts/temp.data[doma,]$num,
-        temp.data[doma,]$p2pm/temp.data[doma,]$num,
-        temp.data[doma,]$p3pm/temp.data[doma,]$num,
-        temp.data[doma,]$pftm/temp.data[doma,]$num,
-        temp.data[doma,]$porb/temp.data[doma,]$num,
-        temp.data[doma,]$pdrb/temp.data[doma,]$num,
-        temp.data[doma,]$past/temp.data[doma,]$num,
-        temp.data[doma,]$pstl/temp.data[doma,]$num,
-        temp.data[doma,]$ptov/temp.data[doma,]$num,
-        temp.data[doma,]$pblk/temp.data[doma,]$num,
-        temp.data[doma,]$ppf/temp.data[doma,]$num,
+        temp.data[doma,]$ppts/numdoma,
+        temp.data[doma,]$p2pm/numdoma,
+        temp.data[doma,]$p3pm/numdoma,
+        temp.data[doma,]$pftm/numdoma,
+        temp.data[doma,]$porb/numdoma,
+        temp.data[doma,]$pdrb/numdoma,
+        temp.data[doma,]$past/numdoma,
+        temp.data[doma,]$pstl/numdoma,
+        temp.data[doma,]$ptov/numdoma,
+        temp.data[doma,]$pblk/numdoma,
+        temp.data[doma,]$ppf/numdoma,
         sum(temp.data[doma,]$five,temp.data[doma,]$four,temp.data[doma,]$tri,temp.data[doma,]$two,temp.data[doma,]$one),
         temp.data[doma,]$all,
         podatki[i,]$AWAY,
-        temp.data[gost,]$ppts/temp.data[gost,]$num,
-        temp.data[gost,]$p2pm/temp.data[gost,]$num,
-        temp.data[gost,]$p3pm/temp.data[gost,]$num,
-        temp.data[gost,]$pftm/temp.data[gost,]$num,
-        temp.data[gost,]$porb/temp.data[gost,]$num,
-        temp.data[gost,]$pdrb/temp.data[gost,]$num,
-        temp.data[gost,]$past/temp.data[gost,]$num,
-        temp.data[gost,]$pstl/temp.data[gost,]$num,
-        temp.data[gost,]$ptov/temp.data[gost,]$num,
-        temp.data[gost,]$pblk/temp.data[gost,]$num,
-        temp.data[gost,]$ppf/temp.data[gost,]$num,
+        temp.data[gost,]$ppts/numgost,
+        temp.data[gost,]$p2pm/numgost,
+        temp.data[gost,]$p3pm/numgost,
+        temp.data[gost,]$pftm/numgost,
+        temp.data[gost,]$porb/numgost,
+        temp.data[gost,]$pdrb/numgost,
+        temp.data[gost,]$past/numgost,
+        temp.data[gost,]$pstl/numgost,
+        temp.data[gost,]$ptov/numgost,
+        temp.data[gost,]$pblk/numgost,
+        temp.data[gost,]$ppf/numgost,
         sum(temp.data[gost,]$five,temp.data[gost,]$four,temp.data[gost,]$tri,temp.data[gost,]$two,temp.data[gost,]$one),
         temp.data[gost,]$all,
         WIN))
     
     if(temp.data[doma,]$first == TRUE){
         temp.data[doma,]$first = FALSE
-        temp.data[doma,]$num = temp.data[doma,]$num - 1
+        temp.data[doma,]$num = temp.data[doma,]$num -1
     }
     
     if(temp.data[gost,]$first == TRUE){
         temp.data[gost,]$first = FALSE
-        temp.data[gost,]$num = temp.data[gost,]$num - 1
+        temp.data[gost,]$num = temp.data[gost,]$num -1
     }
+    temp.data[doma,]$num = temp.data[doma,]$num +1
+    temp.data[gost,]$num = temp.data[gost,]$num +1
     
-    temp.data[doma,]$num = temp.data[doma,]$num + 1
-    temp.data[gost,]$num = temp.data[gost,]$num + 1
-    
-    if(temp.data[doma,]$num != 1){
+    if(numdoma != 1){
         temp.data[doma,]$ppts = (temp.data[doma,]$ppts + podatki[i,]$HPTS)
         temp.data[doma,]$p2pm = temp.data[doma,]$p2pm + (podatki[i,]$H2PM/podatki[i,]$H2PA)
         temp.data[doma,]$p3pm = temp.data[doma,]$p3pm + (podatki[i,]$H3PM/podatki[i,]$H3PA)
@@ -158,8 +156,12 @@ for(i in 1:nrow(podatki)){
         temp.data[doma,]$ptov = temp.data[doma,]$ptov + podatki[i,]$HTOV
         temp.data[doma,]$pblk = temp.data[doma,]$pblk + podatki[i,]$HBLK
         temp.data[doma,]$ppf = temp.data[doma,]$ppf + podatki[i,]$HPF
+        temp.data[doma,]$five =  temp.data[doma,]$four
+        temp.data[doma,]$four =  temp.data[doma,]$tri
+        temp.data[doma,]$tri =  temp.data[doma,]$two
+        temp.data[doma,]$htwo =  temp.data[doma,]$hone
     }
-    if(temp.data[gost,]$num != 1){
+    if(numgost != 1){
         temp.data[gost,]$ppts = (temp.data[gost,]$ppts + podatki[i,]$APTS)
         temp.data[gost,]$p2pm = temp.data[gost,]$p2pm + (podatki[i,]$A2PM/podatki[i,]$A2PA)
         temp.data[gost,]$p3pm = temp.data[gost,]$p3pm + (podatki[i,]$A3PM/podatki[i,]$A3PA)
@@ -171,6 +173,10 @@ for(i in 1:nrow(podatki)){
         temp.data[gost,]$ptov = temp.data[gost,]$ptov + podatki[i,]$ATOV
         temp.data[gost,]$pblk = temp.data[gost,]$pblk + podatki[i,]$ABLK
         temp.data[gost,]$ppf = temp.data[gost,]$ppf + podatki[i,]$APF
+        temp.data[gost,]$five =  temp.data[gost,]$four
+        temp.data[gost,]$four =  temp.data[gost,]$tri
+        temp.data[gost,]$tri =  temp.data[gost,]$two
+        temp.data[gost,]$two =  temp.data[gost,]$one
     }
     
     
