@@ -42,7 +42,7 @@ predMat <- predict(rf, finalTest, type = "prob")
 CA(observed,predicted)                          #0.7915106      #Final test: 0.7652934
 brier.score(obsMat, predMat)                    #0.2613955      #Final test: 0.2998844
 
-#N-tih sosedov
+#K-tih sosedov
 cm.knn <- CoreModel(W ~ ., data = learn, model="knn", kInNN = 36)
 predicted <- predict(cm.knn, finalTest, type="class")
 predMat <- predict(cm.knn, finalTest, type = "prob")

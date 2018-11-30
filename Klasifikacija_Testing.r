@@ -184,3 +184,41 @@ for(n in nt){
     CA(observed,predicted)
 
  
+
+
+ #Mau regresije
+
+best <-c(100,0)
+nt <- seq(40,60,1)
+for(n in nt){
+    knn.model <- kknn(DIFF ~ ., learn, test, k =n)
+    predicted <- fitted(knn.model)
+
+    if(mae(observed, predicted) < best[1]){
+        best <- c(mae(observed, predicted),n)
+    }
+
+
+}
+
+
+
+
+best <-c(100,0)
+nt <- seq(1,5,1)
+for(n in nt){
+    vals <-c()
+for(i in seq(1,50)){    
+    nn.model <- nnet(DIFF ~ ., learn, size = n, decay = 0.0001, maxit = 10000, linout = T)
+    predicted <- predict(nn.model, test)
+
+    vals<-c(vals,mae(observed, predicted)) 
+    }
+
+    if(mean(vals) < best[1]){
+        best <-c(mean(vals),n)
+    }
+}
+
+
+                           
