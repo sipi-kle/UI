@@ -185,8 +185,9 @@ pod = pod[-1,]
 
 
 
-learn <- pod[1:2900,]
-test <- pod[2900:3690,]
+learn <- pod[1:2090,]
+test <- pod[2090:2890,]
+finalTest <- pod[2890:3690,]
 
 learn$HOME <- NULL
 learn$AWAY <- NULL

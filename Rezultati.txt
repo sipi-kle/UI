@@ -1,0 +1,31 @@
+Večinski klasifikator: 0.5837 --un used
+
+Odločitveno drevo (1): 0.5813 --un used
+---------------------------------------
+Večinski klasifikator: 0.6
+
+Odločitveno drevo (1): 0.618
+
+Random forest (1): 0.617
+Random forest (400): 0.641
+Random forest (500): 0.642
+Random forest (250 proximity off): 0.6472819            (380 prox=T 0,6359)
+
+
+N-tih sosedov (26): 0.639
+N-tih sosedov (30): 0.64
+n-tih sosedov (33): 0.6498104 --testirano z AVG
+
+
+Nevronska mreža : 0.63
+
+
+-------------------------------------------------------------------------NOVA TESTNA mnozica
+
+Nevronska mreža (3): 0.721 
+
+Random forest (181): 0.782
+
+N-tih sosedov (36): 0.7117
+
+Odločitveno drevo ( control = rpart.control(cp = 0.0103) ): 0.8166877
